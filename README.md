@@ -60,7 +60,7 @@ ruby src/main.rb some\path\to\your\source some\path\to\your\destination
 
 ## Build 
 
-Requires ruby 2.1.9 because of ocra's compatibility. Also this script doesn't require more so that's fine.
+Requires ruby 2.1.9 because of ocra's compatibility. This script doesn't require more recent ruby features so it should be fine.
 
 ```
 gem install bundler
