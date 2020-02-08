@@ -10,6 +10,10 @@ I'll try to keep it up to date for as long as I can (and as long as I can manage
 If you can't find a release for the latest version of Wolcen, you can try to extract the RSA Key yourself by following [this tutorial](http://atom0s.com/forums/viewtopic.php?f=11&t=223).
 After you found it, you can just copy paste it in the `wolcen.rsa` file at the root of the folder. A new patched PakDecrypt executable will be automatically created when you run the program.
 
+## Disclaimer
+
+This will not give you access to Wolcen's source code, but it will unpak assets (useful if you want to get item pictures, UI elements, etc...), configuration files and other data files. Keep in mind that those are still the proprerty of © Wolcen Studio. Don't use them for non Wolcen-related community projects and keep in mind that © Wolcen Studio may shutdown any project using their assets and data. I just hope they leave the community free to create amazing tools :)
+
 ## Installation
 
 Download the latest release ZIP file and extract it in it's own directory, wherever you want.
