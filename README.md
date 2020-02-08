@@ -62,7 +62,7 @@ Requires ruby 2.1.9 because of ocra's compatibility. Also this script doesn't re
 gem install bundler
 gem install ocra
 bundle install
-ocra src/main.rb --verbose --gem-full --no-dep-run --add-all-core --gemfile .\Gemfile
+ocra src/main.rb src/pak_decrypt.rb src/pak_io.rb --verbose --gem-full --no-dep-run --add-all-core --gemfile .\Gemfile
 ```
 
 
