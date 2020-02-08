@@ -33,11 +33,11 @@ class PakIO
   end
 
   def create_dest_folder
-    puts "Creating destination folder and replicating source hierarchy..."
+    puts "\n Creating destination folder and replicating source hierarchy..."
     folders = Dir.glob("#{posix_source}/**/")
     folders.each do |folder|
       FileUtils.mkdir_p(format_path(folder, posix: true, with_dest: true))
     end
-    puts "Done!"
+    puts " Destination folder created."
   end
 end

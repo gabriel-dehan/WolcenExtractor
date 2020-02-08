@@ -1,6 +1,7 @@
 # Wolcen Extractor
 
-/!\ Windows only /!\
+/!\ Windows only /!\\ 
+
 This program allows the unpacking of Wolcen `.pak` files and the decryption of CryEngine XML files. 
 It is only usable from the command line (`cmd`) on Windows (Works for sure on Windows 10, not sure about previous versions).
 
@@ -38,6 +39,11 @@ wolcen_extractor.exe C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game C
 ```
 
 It **will** take some time (10-20 minutes) as every `.pak` file needs to be extracted and inside, all CryXML and DDS files need to be converted.
+
+## Troubleshooting
+
+- Sometimes, the execution hands during a DDS conversion phase, in this case, just hitting enter usually solves the issue.
+- Some `DDS` files just can't be converted by image magick, and will be left as is. You can still open those in Photoshop, Gimp, Paint.net (with the necessary plugin) or a DDS Viewer or converter.
 
 ## Dev
 

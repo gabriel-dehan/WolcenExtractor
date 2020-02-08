@@ -16,15 +16,15 @@ BASE_RSA = %[
 
 def main
   if ARGV.length != 2
-    puts 'Needs two arguments: source and destinations.'
-    puts 'wolcen_extractor.exe C:\Users\username\your\source\folder C:\Users\username\your\destination\folder'
+    puts ' Needs two arguments: source and destinations.'
+    puts ' wolcen_extractor.exe C:\Users\username\your\source\folder C:\Users\username\your\destination\folder'
     exit
   end
 
   source = ARGV[0]
   dest   = ARGV[1]
 
-  puts "Reading source: #{source}..."
+  puts " [Reading source: #{source}...]"
   io = PakIO.new(source, dest)
 
   decrypter = PakDecrypt.new(BASE_RSA, io)
@@ -34,7 +34,7 @@ def main
   
   decrypter.extract!
 
-  puts "All .pak files extracted to destination: #{dest}"
+  puts " All .pak files extracted to destination: #{dest}"
 end
 
 main()
