@@ -16,7 +16,7 @@ This will not give you access to Wolcen's source code, but it will unpak assets 
 
 ## Installation
 
-Download the latest release ZIP file and extract it in it's own directory, wherever you want.
+[Download the latest Release](https://github.com/gabriel-dehan/WolcenExtractor/releases) and extract it in it's own directory, wherever you want.
 
 ## Usage
 
