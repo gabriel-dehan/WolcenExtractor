@@ -68,9 +68,7 @@ ocra src/main.rb --verbose --gem-full --no-dep-run --add-all-core --gemfile .\Ge
 
 ## Roadmap: 
 
-- Rename .raw
-- Image magick dds conversion
-    - bin\magick mogrify -format png .\test\destination\Libs\UI\u_resources\Minimap\wolcen_act1.dds
+- Find the necessary RSA upon release and publish a new version on February 14.
 
 ## Inspiration and Resources
 
