@@ -42,7 +42,7 @@ It **will** take some time (10-20 minutes) as every `.pak` file needs to be extr
 
 ## Troubleshooting
 
-- Sometimes, the execution hands during a DDS conversion phase, in this case, just hitting enter usually solves the issue.
+- Sometimes, the execution hangs during a DDS conversion phase, in this case, just hitting enter usually solves the issue.
 - Some `DDS` files just can't be converted by image magick, and will be left as is. You can still open those in Photoshop, Gimp, Paint.net (with the necessary plugin) or a DDS Viewer or converter.
 
 ## Dev
