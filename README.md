@@ -73,6 +73,7 @@ ocra src/main.rb src/pak_decrypt.rb src/pak_io.rb --verbose --gem-full --no-dep-
 ## Roadmap: 
 
 - Find the necessary RSA upon release and publish a new version on February 14.
+- Add extraction for cgf files (https://github.com/Markemp/Cryengine-Converter)
 
 ## Inspiration and Resources
 
