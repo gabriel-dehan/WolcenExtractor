@@ -65,7 +65,7 @@ This program needs two things: the source folder and a destination folder.
 With this, you can use this program. In the command line (cmd or powershell) write:
 
 ```
-wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" --dest "C:\Users\princ\Documents\WolcenUnpacked"
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked"
 ```
 Note the `"` quotes around the source and destination. Those are often necessary if there are spaces in your path, it is better to add them in all cases.
 
@@ -83,7 +83,7 @@ You might not want to extract EVERYTHING in the Wolcen directory as it takes up 
 
 Example: 
 ```
-wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" --dest "C:\Users\princ\Documents\WolcenUnpacked" --pattern "lib,umbra"
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked" --pattern "lib,umbra"
 ```
 The use of the flag `--pattern "lib,umbra"` will make the program only extract `.pak` files that have the words `lib` or `umbra` in their name. 
 You can search for anything for the pattern as long as the values are comma separated. If you only have one pattern to match you can of course write `--pattern "umbra"` to match only files with `umbra` in their name.
@@ -93,14 +93,14 @@ You can search for anything for the pattern as long as the values are comma sepa
 If for some reason you want to only get an up to date `PakDecrypt.exe` that works with the latest version of Wolcen so you can use it yourself, you can use: 
 
 ```
-wolcen_extractor.exe patch --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game"
+wolcen_extractor.exe patch --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen"
 ```
 It will patch `PakDecrypt.exe` and then provide you with the patched file location.
 You can use `wolcen_extractor.exe patch --help` for more information.
 
 Note that once you have patched your `PakDecrypt.exe` can also extract using this program as usual but providing the `--no-patch` flag.
 ```
-wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" --dest "C:\Users\princ\Documents\WolcenUnpacked" --no-patch
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked" --no-patch
 ```
 Will extract all `.pak` files but without patching `PakDecrypt.exe` first.
 
@@ -110,6 +110,7 @@ To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>`
 
 ## Troubleshooting
 
+- Be careful not to leave any trailing backslash to your `--source` or `--destination`: `wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\"` will cause an error whereas `wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen"` will work.
 - If you are using the `--only` option, the destination folder might contain empty folders. That's because the source folder hierarchy is recreated before pattern matching occurs. This is not really a bug but I haven't had time to fix that.
 
 /!\ DDS converting is buggy at the moment so I have deactivated it until I find a better way of handling it /!\
