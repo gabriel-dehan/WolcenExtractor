@@ -142,7 +142,6 @@ ocra src/main.rb src/pak_decrypt.rb src/pak_io.rb --verbose --gem-full --no-dep-
 
 ## Roadmap: 
 
-- Add options to the program to only unpak some folders or some files if you don't want everything.
 - Find a way to convert DDS that works for all files and is not buggy.
 - Add extraction for cgf files (https://github.com/Markemp/Cryengine-Converter)
 
