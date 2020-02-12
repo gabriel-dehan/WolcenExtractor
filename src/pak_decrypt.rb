@@ -14,20 +14,25 @@ class PakDecrypt
   end
   
   def patch!
-    puts "\n [Patching PakDecrypt...]"
-    
     # Dumping wolcen's RSA key
     puts "\n [Dumping Wolcen's RSA key...]"
 
     source = io.format_path('\win_x64\CryGameSDK.dll', posix: false, with_source: true)
+
+    if !File.exist?(source)
+      puts " \"#{io.dos_source}\" doesn't seem to be your Wolcen installation folder."
+      puts " Exiting..."
+      exit
+    end
     system('.\bin\wolcen_keydumper.exe --file ' + '"' + source + '"' + ' --outfile .\wolcen.rsa.bin')
     hexrsa = File.binread('.\wolcen.rsa.bin').unpack("H*").first
     File.open('.\wolcen.rsa', 'w') do |file|
       file.write(hexrsa)
     end
     FileUtils.rm('.\wolcen.rsa.bin', force: true)
-    puts "\n [Wolcen's RSA key found]"
+    puts " [Wolcen's RSA key found!]"
 
+    puts "\n [Patching PakDecrypt...]"
     # Make sure we don't have an old PakDecrypt patched
     FileUtils.rm('.\bin\PakDecrypt.exe', force: true)
     # Copy the Unpatched to PakDecrypt
@@ -44,7 +49,7 @@ class PakDecrypt
         file.write([patched_exe].pack('H*'))
       end
     end
-    puts " [PakDecrypt is now patched.]"
+    puts " [PakDecrypt is now patched!]"
   end
 
   def clean_rsa(rsa)

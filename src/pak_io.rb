@@ -1,17 +1,29 @@
 require 'fileutils'
 
 class PakIO
-  attr_reader :dos_source, :dos_dest, :posix_source, :posix_dest
+  attr_reader :dos_source, :dos_dest, :posix_source, :posix_dest, :patterns
 
-  def initialize(dos_source, dos_dest)
+  def initialize(dos_source, dos_dest, patterns: nil)
+    patterns ||= ""
+    
     @dos_source = dos_source
     @posix_source = dos_source.gsub('\\','/')
     @dos_dest = dos_dest
     @posix_dest = dos_dest.gsub('\\','/')
+    @patterns = patterns.split(",")
+                  .reject { |pat| pat.empty? }
+                  .map { |pat| Regexp.new(pat.strip, Regexp::IGNORECASE) }
   end
 
   def find_files(extension, dest: false)
-    Dir.glob("#{dest ? posix_dest : posix_source}/**/*.#{extension}")
+    Dir.glob("#{dest ? posix_dest : posix_source}/**/*.#{extension}").select do |path|
+      if patterns.empty? || dest
+        true
+      else
+        file_name = path.split("/").last
+        patterns.any? { |pattern| pattern.match(file_name) }
+      end
+    end
   end
 
   def format_path(path, posix: true, with_source: false, with_dest: false)

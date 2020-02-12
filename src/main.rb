@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+require 'rubygems'
+require 'commander/import'
 require_relative './pak_io.rb'
 require_relative './pak_decrypt.rb'
 
@@ -14,32 +16,79 @@ BASE_RSA = %[
   61 B2 DD 90 8F 53 F1 02 03 01 00 01
 ]
 
-def main
-  p ARGV
-  if ARGV.length != 2
-    puts ' Needs two arguments: source (Wolcen installation folder) and destination.'
-    puts ' wolcen_extractor.exe C:\Users\username\your\wolcen\installation\folder C:\Users\username\your\destination\folder'
-    exit
+program :name, 'Wolcen Extractor'
+program :version, '1.0.0'
+program :description, 'Extracts Pak files from Wolcen. decrypts CryXML.'
+
+command :patch do |c| 
+  c.syntax = 'wolcen_extractor.exe patch [options]'
+  c.description = 'Patches PakDecrypt with the latest Wolcen RSA key'
+  c.option '--source "<Wolcen folder>"', String, 'Your wolcen installation folder.'
+  
+  c.action do |args, options|
+    if !options.source
+      puts "\n  Missing argument: --source \"<Wolcen folder>\""
+      puts "  You can use 'wolcen_extractor.exe patch --help' to get more information."
+      exit
+    end
+
+    unless Dir.exists?(options.source)
+      puts "  --source #{options.source}, directory doesn't seem to exist." 
+      exit
+    end
+
+    puts " [Found source: #{options.source}]"
+    io = PakIO.new(options.source, "")
+
+    decrypter = PakDecrypt.new(BASE_RSA, io)
+    decrypter.patch!
+    
+    puts "\n PakDecrypt.exe can now be found in #{Dir.pwd.gsub('/', '\\')}\\bin\\PakDecrypt.exe"
   end
-
-  source = ARGV[0]
-  dest   = ARGV[1]
-
-  raise "Source directory doesn't seem to exist." unless Dir.exists?(source)
-
-  puts " [Reading source: #{source}...]"
-  io = PakIO.new(source, dest)
-
-  decrypter = PakDecrypt.new(BASE_RSA, io)
-  decrypter.patch!
-  
-  io.create_dest_folder
-  
-  decrypter.extract!
-
-  puts " All .pak files extracted to destination: #{dest}"
 end
 
-main()
+
+command :extract do |c| 
+  c.syntax = 'wolcen_extractor.exe extract [options]'
+  c.description = 'Patches PakDecrypt with the latest Wolcen RSA key and then extract every .pak file to the destination folder.'
+  c.option '--source "<Wolcen folder>"', String, 'Your wolcen installation folder.'
+  c.option '--dest "<Destination folder>"', String, 'A destination folder. It doesn\'nt need to exist.'
+  c.option '--only "<pattern>"', String, 'Will only extract .pak files with names matching the provided pattern, e.g --pattern "lib,umbra".'
+  c.option '--no-patch', TrueClass, 'Will prevent the program from patching PakDecrypt.'
+  
+  c.action do |args, options|
+    if !options.source
+      puts "\n  Missing argument: --source \"<Wolcen folder>\""
+      puts "  You can use 'wolcen_extractor.exe extract --help' to get more information."
+      exit
+    end
+
+    if !options.dest
+      puts "\n  Missing argument: --dest \"<Destination folder>\""
+      puts "  You can use 'wolcen_extractor.exe extract --help' to get more information."
+      exit
+    end
+
+    unless Dir.exists?(options.source)
+      puts "  --source #{options.source}, directory doesn't seem to exist." 
+      exit
+    end
+
+    puts " [Found source: #{options.source}]"
+    io = PakIO.new(options.source, options.dest, patterns: options.only)
+
+    decrypter = PakDecrypt.new(BASE_RSA, io)
+
+    unless options.no_patch
+      decrypter.patch!
+    end
+
+    io.create_dest_folder
+    decrypter.extract!
+
+    puts "\n All .pak files extracted to destination: #{options.dest}"
+  end
+end
+
 
 

@@ -1,6 +1,26 @@
 # Wolcen Extractor
 
-/!\ Windows only /!\\ 
+- Table of content
+  * [What is this about](#what-is-this-about)
+  * [Disclaimer](#disclaimer)
+  * [Requirements](#requirements)
+  * [Installation](#installation)
+  * [Usage](#usage)
+    + [Basic usage](#basic-usage)
+    + [Advanced usage](#advanced-usage)
+      - [Extracting only certain pak files](#extracting-only-certain-pak-files)
+      - [Only patching PakDecrypt.exe with the latest Wolcen RSA key](#only-patching-pakdecryptexe-with-the-latest-wolcen-rsa-key)
+      - [Only decrypt CryXML](#only-decrypt-cryxml)
+  * [Troubleshooting](#troubleshooting)
+  * [Dev](#dev)
+  * [Build](#build)
+  * [Roadmap:](#roadmap-)
+  * [Inspiration and Resources](#inspiration-and-resources)
+  * [Current Wolcen PakDecrypt RSA Key:](#current-wolcen-pakdecrypt-rsa-key-)
+
+## What is this about 
+
+/!\ This program is for Windows only /!\\ 
 
 This program allows the unpacking of Wolcen `.pak` files and the decryption of CryEngine XML files. 
 It is only usable from the command line (`cmd`) on Windows (Works for sure on Windows 10, not sure about previous versions as I haven't tested it.).
@@ -26,12 +46,13 @@ Beware as you DON'T WANT the 64bit version, you must install the 32bit (x86) fil
 
 ## Usage
 
-Basic usage is the following
+### Basic usage
+
+Basic usage is the following:
 
 ```
-wolcen_extractor.exe "<wolcen install folder>" "<destination>"
+wolcen_extractor.exe extract --source "<wolcen install folder>" --dest "<destination>"
 ```
-
 
 Either open Windows `cmd` and navigate to the folder containing `wolcen_extractor.exe`
 OR (if you don't know how to)
@@ -42,22 +63,55 @@ This program needs two things: the source folder and a destination folder.
 - For the source, you'll want to locate your Wolcen installation folder. Mine is in `C:\Program Files (x86)\Steam\steamapps\common\Wolcen`. This will be your source, as it contains all `.pak` files in its subdirectories.
 - For the destination, it can be whatever you want, either a relative path like `./extracts` (this would extract everything in an `extract` folder in the WolcenExtractor directory) or an absolute path like `C:\Users\princ\Documents\WolcenUnpacked`.
 
-Then you can use the software, in the command line (cmd or powershell) write
+With this, you can use this program. In the command line (cmd or powershell) write:
 
 ```
-wolcen_extractor.exe "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" "C:\Users\princ\Documents\WolcenUnpacked"
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" --dest "C:\Users\princ\Documents\WolcenUnpacked"
 ```
 Note the `"` quotes around the source and destination. Those are often necessary if there are spaces in your path, it is better to add them in all cases.
 
-It **will** take some time (up to 20-30 minutes) as every `.pak` file needs to be extracted and inside, all CryXML files need to be decrypted.
-Also keep in mind that the unpacked folder will be roughly the size of your Wolcen's installation (dozens of gb) so you need to have enough space on your disk.
+When extracting everything. it **will** take some time (up to 20-30 minutes) as every `.pak` file needs to be extracted and inside, all CryXML files need to be decrypted.
+Also keep in mind that the unpacked folder will be roughly the size of your Wolcen's installation (dozens of gb) so you need to have enough space on your disk. For the beta the whole extracted installation folder took up to 15GB.
+If you don't want to extract everything but only a few pak files, refer to the [Advanced usage](#advanced-usage) section below.
 
-## Using binaries independently
+### Advanced usage
 
-This program makes use of multiple binaries to do its job. If you wish to extract only one `.pak` file for instance you might not want to run WolcenExtractor as a whole.
-To do this you can just go to `/bin` folder and use `PakDecrypt.exe <sourcefile> <dest>` for Pak extraction and `RuneForge2.exe <sourcexml>` for XML decryption.
+Remember you can always use `wolcen_extractor.exe --help` and `wolcen_extractor.exe [command] --help` to get more information.
+
+#### Extracting only certain pak files
+
+You might not want to extract EVERYTHING in the Wolcen directory as it takes up a lot of space and takes a lot of time. If you want to restrict the files that will be extracted you can use the `--pattern` flag.
+
+Example: 
+```
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" --dest "C:\Users\princ\Documents\WolcenUnpacked" --pattern "lib,umbra"
+```
+The use of the flag `--pattern "lib,umbra"` will make the program only extract `.pak` files that have the words `lib` or `umbra` in their name. 
+You can search for anything for the pattern as long as the values are comma separated. If you only have one pattern to match you can of course write `--pattern "umbra"` to match only files with `umbra` in their name.
+
+#### Only patching PakDecrypt.exe with the latest Wolcen RSA key
+
+If for some reason you want to only get an up to date `PakDecrypt.exe` that works with the latest version of Wolcen so you can use it yourself, you can use: 
+
+```
+wolcen_extractor.exe patch --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game"
+```
+It will patch `PakDecrypt.exe` and then provide you with the patched file location.
+You can use `wolcen_extractor.exe patch --help` for more information.
+
+Note that once you have patched your `PakDecrypt.exe` can also extract using this program as usual but providing the `--no-patch` flag.
+```
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" --dest "C:\Users\princ\Documents\WolcenUnpacked" --no-patch
+```
+Will extract all `.pak` files but without patching `PakDecrypt.exe` first.
+
+#### Only decrypt CryXML
+
+To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>` for XML decryption. Or even just drag'n'drop and XML file onto `RuneForge2.exe` in the explorer. This will create a `.raw` file that you can then rename to `.xml`.
 
 ## Troubleshooting
+
+- If you are using the `--only` option, the destination folder might contain empty folders. That's because the source folder hierarchy is recreated before pattern matching occurs. This is not really a bug but I haven't had time to fix that.
 
 /!\ DDS converting is buggy at the moment so I have deactivated it until I find a better way of handling it /!\
 - Sometimes, the execution hangs during a DDS conversion phase, in this case, just hitting enter usually solves the issue.
@@ -96,7 +150,7 @@ Thanks to atom0s for all his knowledge and his great tutorials.
 - http://atom0s.com/forums/viewtopic.php?f=11&t=223
 - https://zenhax.com/viewtopic.php?p=41911#p41911
 
-### Current Wolcen PakDecrypt RSA Key:
+## Current Wolcen PakDecrypt RSA Key:
 
 ```
 30 81 89 02 81 81 00 E2 72 5E F9 BB 16 88 71 C2 38 D9 1B 64 CF B8 B1 33 2F 1B BC F1 05 F4 0F 25 2F B9 3F 3A 60 9D 52 4C F8 F5 EE 09 BC 55 4F D9 18 DB 8B B3 53 1D 6F 88 BE FE A4 BF BD F5 1C B1 E1 DF 5E 5D FA 83 FD 65 84 D3 7E 27 99 24 22 4F C4 F8 BB 6C 98 ED 50 D2 70 02 E8 BA 21 F3 5F 01 55 A0 8D 9E D2 76 71 40 32 AE EC DA 06 6C 17 FA 54 F1 C3 3E 5D AF 8B 33 2B 3C C0 77 14 90 A1 52 61 B2 DD 90 8F 53 F1 02 03 01 00 01
