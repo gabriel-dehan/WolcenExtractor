@@ -5,14 +5,20 @@
 This program allows the unpacking of Wolcen `.pak` files and the decryption of CryEngine XML files. 
 It is only usable from the command line (`cmd`) on Windows (Works for sure on Windows 10, not sure about previous versions).
 
-For this program to work, you need to provide the latest Wolcen's build CryEngine RSA Key. 
-I'll try to keep it up to date for as long as I can (and as long as I can manage to retrieve it, Wolcen might change some things in the future.)
-If you can't find a release for the latest version of Wolcen, you can try to extract the RSA Key yourself by following [this tutorial](http://atom0s.com/forums/viewtopic.php?f=11&t=223).
-After you found it, you can just copy paste it in the `wolcen.rsa` file at the root of the folder. A new patched PakDecrypt executable will be automatically created when you run the program.
+This program makes use of atom0s Wolcen's RSA keydumper to retrieve the RSA key used for decrypting pak files. The RSA Key is then written to an `wolcen.rsa`.
 
 ## Disclaimer
 
 This will not give you access to Wolcen's source code, but it will unpak assets (useful if you want to get item pictures, UI elements, etc...), configuration files and other data files. Keep in mind that those are still the proprerty of © Wolcen Studio. Don't use them for non Wolcen-related community projects and keep in mind that © Wolcen Studio may shutdown any project using their assets and data. I just hope they leave the community free to create amazing tools :)
+
+## Requirements
+
+Some binaries used by this application were created using Visual Studio 2019, thus require a specific runtime to work. 
+You can find the required runtime on Microsoft's website here:
+https://support.microsoft.com/en-us/help/2977003/the-latest-supported-visual-c-downloads
+
+You need to download the Visual Studio 2015, 2017 and 2019 x86 file. 
+Beware as you DON'T WANT the 64bit version, you must install the 32bit (x86) file for this to work!
 
 ## Installation
 

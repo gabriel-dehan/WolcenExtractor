@@ -15,11 +15,16 @@ class PakDecrypt
   
   def patch!
     puts "\n [Patching PakDecrypt...]"
-    puts "\n [Extracting RSA key from Wolcen...]"
-    source = io.format_path(pak_file, posix: false, with_source: true)
-    dest = io.format_path(pak_file, posix: false, with_dest: true).gsub('.pak', '.zip')
-    system('.\bin\PakDecrypt_Unpatched.exe', source, dest, out: File::NULL)
-    
+    puts "\n [Dumping Wolcen's RSA key...]"
+
+    source = io.format_path('\win_x64\CryGameSDK.dll', posix: false, with_source: true)
+
+    system('.\bin\wolcen_keydumper.exe --file ' + '"' + source + '"' + ' --outfile .\wolcen.rsa.bin')
+    hexrsa = File.binread('.\wolcen.rsa.bin').unpack("H*").first
+    File.open('.\wolcen.rsa2', 'w') do |file|
+      file.write(hexrsa)
+    end
+
     exit
     # Make sure we don't have an old PakDecrypt patch
     FileUtils.rm('.\bin\PakDecrypt.exe', force: true)
