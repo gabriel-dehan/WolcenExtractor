@@ -123,7 +123,7 @@ Clone the repository and install Ruby 2.1.9.
 
 ```
 bundle install
-ruby src/main.rb some\path\to\your\source some\path\to\your\destination
+ruby src/main.rb extract --source some\path\to\your\source --dest some\path\to\your\destination
 ```
 
 ## Build 
