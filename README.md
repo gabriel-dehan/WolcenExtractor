@@ -117,7 +117,7 @@ To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>`
 - Sometimes, the execution hangs during a DDS conversion phase, in this case, just hitting enter usually solves the issue.
 - Some `DDS` files just can't be converted by image magick, and will be left as is. You can still open those in Photoshop, Gimp, Paint.net (with the necessary plugin) or a DDS Viewer or converter.
 
-## Dev
+## Want to contribute?
 
 Clone the repository and install Ruby 2.1.9.
 
@@ -126,7 +126,9 @@ bundle install
 ruby src/main.rb extract --source some\path\to\your\source --dest some\path\to\your\destination
 ```
 
-## Build 
+Make your changes and then do a PR ;) 
+
+### Building the executable
 
 Requires ruby 2.1.9 because of ocra's compatibility. This script doesn't require more recent ruby features so it should be fine.
 
@@ -136,7 +138,6 @@ gem install ocra
 bundle install
 ocra src/main.rb src/pak_decrypt.rb src/pak_io.rb --verbose --gem-full --no-dep-run --add-all-core --gemfile .\Gemfile
 ```
-
 
 ## Roadmap: 
 
