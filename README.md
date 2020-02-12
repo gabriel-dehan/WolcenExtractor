@@ -106,7 +106,7 @@ Will extract all `.pak` files but without patching `PakDecrypt.exe` first.
 
 #### Only decrypt CryXML
 
-To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>` for XML decryption. Or even just drag'n'drop and XML file onto `RuneForge2.exe` in the explorer. This will create a `.raw` file that you can then rename to `.xml`.
+To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>` for XML decryption. Or even just drag'n'drop an XML file (or many iirc) onto `RuneForge2.exe` in the explorer. This will create a `.raw` file that you can then rename to `.xml`.
 
 ## Troubleshooting
 
