@@ -13,7 +13,7 @@
 * [Troubleshooting](#troubleshooting)
 * [Want to contribute?](#want-to-contribute-)
   + [Building the executable](#building-the-executable)
-* [Roadmap:](#roadmap-)
+* [Roadmap](#roadmap-)
 * [Inspiration and Resources](#inspiration-and-resources)
 * [Current Wolcen PakDecrypt RSA Key](#current-wolcen-pakdecrypt-rsa-key)
 
