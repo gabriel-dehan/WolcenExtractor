@@ -15,6 +15,7 @@ BASE_RSA = %[
 ]
 
 def main
+  p ARGV
   if ARGV.length != 2
     puts ' Needs two arguments: source (Wolcen installation folder) and destination.'
     puts ' wolcen_extractor.exe C:\Users\username\your\wolcen\installation\folder C:\Users\username\your\destination\folder'
@@ -23,6 +24,8 @@ def main
 
   source = ARGV[0]
   dest   = ARGV[1]
+
+  raise "Source directory doesn't seem to exist." unless Dir.exists?(source)
 
   puts " [Reading source: #{source}...]"
   io = PakIO.new(source, dest)

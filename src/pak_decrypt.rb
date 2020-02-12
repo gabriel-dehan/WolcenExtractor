@@ -15,18 +15,20 @@ class PakDecrypt
   
   def patch!
     puts "\n [Patching PakDecrypt...]"
+    
+    # Dumping wolcen's RSA key
     puts "\n [Dumping Wolcen's RSA key...]"
 
     source = io.format_path('\win_x64\CryGameSDK.dll', posix: false, with_source: true)
-
     system('.\bin\wolcen_keydumper.exe --file ' + '"' + source + '"' + ' --outfile .\wolcen.rsa.bin')
     hexrsa = File.binread('.\wolcen.rsa.bin').unpack("H*").first
-    File.open('.\wolcen.rsa2', 'w') do |file|
+    File.open('.\wolcen.rsa', 'w') do |file|
       file.write(hexrsa)
     end
+    FileUtils.rm('.\wolcen.rsa.bin', force: true)
+    puts "\n [Wolcen's RSA key found]"
 
-    exit
-    # Make sure we don't have an old PakDecrypt patch
+    # Make sure we don't have an old PakDecrypt patched
     FileUtils.rm('.\bin\PakDecrypt.exe', force: true)
     # Copy the Unpatched to PakDecrypt
     FileUtils.cp('.\bin\PakDecrypt_Unpatched.exe', '.\bin\PakDecrypt.exe')
@@ -66,13 +68,13 @@ class PakDecrypt
       end
       puts " +-> XML Decrypted."
 
-      dds_files = io.find_files("dds", dest: true)
-      puts " +-> Found #{dds_files.length} .dds files."
-      puts " +-> Converting DDS to PNGs...\n"
-      dds_files.each do |dds_file|
-        convert_dds!(dds_file)
-      end
-      puts " +-> DDS Converted."
+      # dds_files = io.find_files("dds", dest: true)
+      # puts " +-> Found #{dds_files.length} .dds files."
+      # puts " +-> Converting DDS to PNGs...\n"
+      # dds_files.each do |dds_file|
+      #   convert_dds!(dds_file)
+      # end
+      # puts " +-> DDS Converted."
     end
   end
 

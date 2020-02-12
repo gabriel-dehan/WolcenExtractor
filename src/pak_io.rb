@@ -32,11 +32,17 @@ class PakIO
     formatted_path
   end
 
+  def directory_has_files?(path, ext)
+    !Dir["#{path}*#{ext}"].empty?
+  end
+
   def create_dest_folder
     puts "\n Creating destination folder and replicating source hierarchy..."
     folders = Dir.glob("#{posix_source}/**/")
     folders.each do |folder|
-      FileUtils.mkdir_p(format_path(folder, posix: true, with_dest: true))
+      if directory_has_files?(folder, ".pak")
+        FileUtils.mkdir_p(format_path(folder, posix: true, with_dest: true))
+      end
     end
     puts " Destination folder created."
   end

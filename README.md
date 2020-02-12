@@ -3,9 +3,9 @@
 /!\ Windows only /!\\ 
 
 This program allows the unpacking of Wolcen `.pak` files and the decryption of CryEngine XML files. 
-It is only usable from the command line (`cmd`) on Windows (Works for sure on Windows 10, not sure about previous versions).
+It is only usable from the command line (`cmd`) on Windows (Works for sure on Windows 10, not sure about previous versions as I haven't tested it.).
 
-This program makes use of atom0s Wolcen's RSA keydumper to retrieve the RSA key used for decrypting pak files. The RSA Key is then written to an `wolcen.rsa`.
+This program makes use of atom0s Wolcen's RSA keydumper to retrieve the RSA key used for decrypting pak files. The RSA Key is then written to an `wolcen.rsa` file in this program's folder if you ever need it.
 
 ## Disclaimer
 
@@ -29,7 +29,7 @@ Beware as you DON'T WANT the 64bit version, you must install the 32bit (x86) fil
 Basic usage is the following
 
 ```
-wolcen_extractor.exe <source> <destination>
+wolcen_extractor.exe "<wolcen install folder>" "<destination>"
 ```
 
 
@@ -39,19 +39,27 @@ Go the the WolcenExtractor directory and `Shift`+`Right-Click` then select "Open
 Then you can run the program. 
 
 This program needs two things: the source folder and a destination folder. 
-- For the source, usually you'll want to locate your Wolcen installation and in it, the `Game` folder. Mine is in `C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game`. This will be your source, it's the folder that contains all `.pak` files.
+- For the source, you'll want to locate your Wolcen installation folder. Mine is in `C:\Program Files (x86)\Steam\steamapps\common\Wolcen`. This will be your source, as it contains all `.pak` files in its subdirectories.
 - For the destination, it can be whatever you want, either a relative path like `./extracts` (this would extract everything in an `extract` folder in the WolcenExtractor directory) or an absolute path like `C:\Users\princ\Documents\WolcenUnpacked`.
 
 Then you can use the software, in the command line (cmd or powershell) write
 
 ```
-wolcen_extractor.exe C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game C:\Users\princ\Documents\WolcenUnpacked
+wolcen_extractor.exe "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\Game" "C:\Users\princ\Documents\WolcenUnpacked"
 ```
+Note the `"` quotes around the source and destination. Those are often necessary if there are spaces in your path, it is better to add them in all cases.
 
-It **will** take some time (10-20 minutes) as every `.pak` file needs to be extracted and inside, all CryXML and DDS files need to be converted.
+It **will** take some time (up to 20-30 minutes) as every `.pak` file needs to be extracted and inside, all CryXML files need to be decrypted.
+Also keep in mind that the unpacked folder will be roughly the size of your Wolcen's installation (dozens of gb) so you need to have enough space on your disk.
+
+## Using binaries independently
+
+This program makes use of multiple binaries to do its job. If you wish to extract only one `.pak` file for instance you might not want to run WolcenExtractor as a whole.
+To do this you can just go to `/bin` folder and use `PakDecrypt.exe <sourcefile> <dest>` for Pak extraction and `RuneForge2.exe <sourcexml>` for XML decryption.
 
 ## Troubleshooting
 
+/!\ DDS converting is buggy at the moment so I have deactivated it until I find a better way of handling it /!\
 - Sometimes, the execution hangs during a DDS conversion phase, in this case, just hitting enter usually solves the issue.
 - Some `DDS` files just can't be converted by image magick, and will be left as is. You can still open those in Photoshop, Gimp, Paint.net (with the necessary plugin) or a DDS Viewer or converter.
 
@@ -78,7 +86,8 @@ ocra src/main.rb src/pak_decrypt.rb src/pak_io.rb --verbose --gem-full --no-dep-
 
 ## Roadmap: 
 
-- Find the necessary RSA upon release and publish a new version on February 14.
+- Add options to the program to only unpak some folders or some files if you don't want everything.
+- Find a way to convert DDS that works for all files and is not buggy.
 - Add extraction for cgf files (https://github.com/Markemp/Cryengine-Converter)
 
 ## Inspiration and Resources
