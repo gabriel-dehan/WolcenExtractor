@@ -79,14 +79,14 @@ Remember you can always use `wolcen_extractor.exe --help` and `wolcen_extractor.
 
 #### Extracting only certain pak files
 
-You might not want to extract EVERYTHING in the Wolcen directory as it takes up a lot of space and takes a lot of time. If you want to restrict the files that will be extracted you can use the `--pattern` flag.
+You might not want to extract EVERYTHING in the Wolcen directory as it takes up a lot of space and takes a lot of time. If you want to restrict the files that will be extracted you can use the `--only` flag.
 
 Example: 
 ```
-wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked" --pattern "lib,umbra"
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked" --only "lib,umbra"
 ```
-The use of the flag `--pattern "lib,umbra"` will make the program only extract `.pak` files that have the words `lib` or `umbra` in their name. 
-You can search for anything for the pattern as long as the values are comma separated and the pattern is case insensitive. If you only have one pattern to match you can of course write `--pattern "umbra"` to match only files with `umbra` in their name.
+The use of the flag `--only "lib,umbra"` will make the program only extract `.pak` files that have the words `lib` or `umbra` in their name. 
+You can search for anything for the pattern as long as the values are comma separated and the pattern is case insensitive. If you only have one pattern to match you can of course write `--only "umbra"` to match only files with `umbra` in their name.
 
 #### Only patching PakDecrypt.exe with the latest Wolcen RSA key
 
