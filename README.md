@@ -12,11 +12,11 @@
       - [Only patching PakDecrypt.exe with the latest Wolcen RSA key](#only-patching-pakdecryptexe-with-the-latest-wolcen-rsa-key)
       - [Only decrypt CryXML](#only-decrypt-cryxml)
   * [Troubleshooting](#troubleshooting)
-  * [Dev](#dev)
-  * [Build](#build)
+  * [Want to contribute?](#want-to-contribute-)
+    + [Building the executable](#building-the-executable)
   * [Roadmap:](#roadmap-)
   * [Inspiration and Resources](#inspiration-and-resources)
-  * [Current Wolcen PakDecrypt RSA Key:](#current-wolcen-pakdecrypt-rsa-key-)
+  * [Current Wolcen PakDecrypt RSA Key](#current-wolcen-pakdecrypt-rsa-key)
 
 ## What is this about 
 
