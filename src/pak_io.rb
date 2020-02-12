@@ -21,8 +21,8 @@ class PakIO
     escape = ->(s) { posix ? s.gsub!('\\', '/') : s.gsub!('/', '\\') }
 
     escape.(path)
-    formatted_path.sub!(src, '')
     formatted_path.sub!(dst, '')
+    formatted_path.sub!(src, '')
 
     if with_source
       formatted_path = "#{src}#{formatted_path}"

@@ -15,6 +15,12 @@ class PakDecrypt
   
   def patch!
     puts "\n [Patching PakDecrypt...]"
+    puts "\n [Extracting RSA key from Wolcen...]"
+    source = io.format_path(pak_file, posix: false, with_source: true)
+    dest = io.format_path(pak_file, posix: false, with_dest: true).gsub('.pak', '.zip')
+    system('.\bin\PakDecrypt_Unpatched.exe', source, dest, out: File::NULL)
+    
+    exit
     # Make sure we don't have an old PakDecrypt patch
     FileUtils.rm('.\bin\PakDecrypt.exe', force: true)
     # Copy the Unpatched to PakDecrypt

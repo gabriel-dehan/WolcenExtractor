@@ -16,8 +16,8 @@ BASE_RSA = %[
 
 def main
   if ARGV.length != 2
-    puts ' Needs two arguments: source and destinations.'
-    puts ' wolcen_extractor.exe C:\Users\username\your\source\folder C:\Users\username\your\destination\folder'
+    puts ' Needs two arguments: source (Wolcen installation folder) and destination.'
+    puts ' wolcen_extractor.exe C:\Users\username\your\wolcen\installation\folder C:\Users\username\your\destination\folder'
     exit
   end
 
