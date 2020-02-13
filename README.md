@@ -56,7 +56,8 @@ wolcen_extractor.exe extract --source "<wolcen install folder>" --dest "<destina
 Either open Windows `cmd` and navigate to the folder containing `wolcen_extractor.exe`
 OR (if you don't know how to)
 Go the the WolcenExtractor directory and `Shift`+`Right-Click` then select "Open command window here" or "Open Windows PowerShell window here".
-Then you can run the program. 
+YOU NEED TO BE IN THE `WolcenExtractor` DIRECTORY BEFORE RUNNING THE COMMAND, this is VERY important otherwise the program won't be working. This means that running the program by doing something like `D:\Downloads\Wolcen\WolcenExtractor\wolcen_extractor.exe` won't work.
+Once you are in the WolcenExtractor directory, then you can run the program. 
 
 This program needs two things: the source folder and a destination folder. 
 - For the source, you'll want to locate your Wolcen installation folder. Mine is in `C:\Program Files (x86)\Steam\steamapps\common\Wolcen`. This will be your source, as it contains all `.pak` files in its subdirectories.
