@@ -57,15 +57,15 @@ Either open Windows `cmd` and navigate to the folder containing `wolcen_extracto
 OR (if you don't know how to)
 Go the the WolcenExtractor directory and `Shift`+`Right-Click` then select "Open command window here" or "Open Windows PowerShell window here".
 
-YOU NEED TO BE IN THE `WolcenExtractor` DIRECTORY BEFORE RUNNING THE COMMAND, this is VERY important otherwise the program won't be working. This means that running the program by doing something like `D:\Downloads\Wolcen\WolcenExtractor\wolcen_extractor.exe` won't work.
+Please note that you NEED TO BE IN THE `WolcenExtractor` DIRECTORY before running the program, this is VERY important otherwise the program work. This means that running the program by doing something like `D:\Downloads\Wolcen\WolcenExtractor\wolcen_extractor.exe` won't work. Use the aforementioned instructions to navigate to the proper direction in the command line interface.
 
-Once you are in the WolcenExtractor directory, then you can run the program. 
+Once you are in the WolcenExtractor directory, you can then run the program. 
 
 This program needs two things: the source folder and a destination folder. 
 - For the source, you'll want to locate your Wolcen installation folder. Mine is in `C:\Program Files (x86)\Steam\steamapps\common\Wolcen`. This will be your source, as it contains all `.pak` files in its subdirectories.
 - For the destination, it can be whatever you want, either a relative path like `./extracts` (this would extract everything in an `extract` folder in the WolcenExtractor directory) or an absolute path like `C:\Users\princ\Documents\WolcenUnpacked`.
 
-With this, you can use this program. In the command line (cmd or powershell) write:
+In the command line (cmd or powershell) write:
 
 ```
 wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked"
@@ -115,6 +115,7 @@ To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>`
 
 - The program is slow to start (10-15 seconds) and that's "normal". I am by no mean a software developer and my main language is Ruby which is not meant for software development or the release of executables. This means that before my code can load, it needs to load Ruby before executing my code which is  the reason for the slow start.
 - Be careful not to leave any trailing backslash to your `--source` or `--destination`: `wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\"` will cause an error whereas `wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen"` will work.
+- When using **Windows Powershell** you need to add a `.\` before the name of the program. This means that instead of `wolcen_extractor.exe ...` you need to write `.\wolcen_extractor.exe`. 
 - If you are using the `--only` option, the destination folder might contain empty folders. That's because the source folder hierarchy is recreated before pattern matching occurs. This is not really a bug but I haven't had time to fix that.
 
 /!\ DDS converting is buggy at the moment so I have deactivated it until I find a better way of handling it /!\
