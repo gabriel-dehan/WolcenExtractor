@@ -57,7 +57,7 @@ Either open Windows `cmd` and navigate to the folder containing `wolcen_extracto
 OR (if you don't know how to)
 Go the the WolcenExtractor directory and `Shift`+`Right-Click` then select "Open command window here" or "Open Windows PowerShell window here".
 
-Please note that you NEED TO BE IN THE `WolcenExtractor` DIRECTORY before running the program, this is VERY important otherwise the program work. This means that running the program by doing something like `D:\Downloads\Wolcen\WolcenExtractor\wolcen_extractor.exe` won't work. Use the aforementioned instructions to navigate to the proper directory in the command line interface.
+> Please note that you NEED TO BE IN THE `WolcenExtractor` DIRECTORY before running the program, this is VERY important otherwise the program work. This means that running the program by doing something like `D:\Downloads\Wolcen\WolcenExtractor\wolcen_extractor.exe` won't work. Use the aforementioned instructions to navigate to the proper directory in the command line interface.
 
 Once you are in the WolcenExtractor directory, you can then run the program. 
 
