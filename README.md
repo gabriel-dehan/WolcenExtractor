@@ -57,7 +57,7 @@ Either open Windows `cmd` and navigate to the folder containing `wolcen_extracto
 OR (if you don't know how to)
 Go the the WolcenExtractor directory and `Shift`+`Right-Click` then select "Open command window here" or "Open Windows PowerShell window here".
 
-Please note that you NEED TO BE IN THE `WolcenExtractor` DIRECTORY before running the program, this is VERY important otherwise the program work. This means that running the program by doing something like `D:\Downloads\Wolcen\WolcenExtractor\wolcen_extractor.exe` won't work. Use the aforementioned instructions to navigate to the proper direction in the command line interface.
+Please note that you NEED TO BE IN THE `WolcenExtractor` DIRECTORY before running the program, this is VERY important otherwise the program work. This means that running the program by doing something like `D:\Downloads\Wolcen\WolcenExtractor\wolcen_extractor.exe` won't work. Use the aforementioned instructions to navigate to the proper directory in the command line interface.
 
 Once you are in the WolcenExtractor directory, you can then run the program. 
 
@@ -124,9 +124,10 @@ To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>`
 
 ## Want to contribute?
 
-Clone the repository and install Ruby 2.1.9.
+Install Ruby 2.1.9 (x86 NOT x64) and clone the repository.
 
 ```
+gem install bundler -v 1.16.0
 bundle install
 ruby src/main.rb extract --source some\path\to\your\source --dest some\path\to\your\destination
 ```
@@ -138,10 +139,10 @@ Make your changes and then do a PR ;)
 Requires ruby 2.1.9 because of ocra's compatibility. This script doesn't require more recent ruby features so it should be fine.
 
 ```
-gem install bundler
+gem install bundler -v 1.16.0
 gem install ocra
 bundle install
-ocra src/main.rb src/pak_decrypt.rb src/pak_io.rb --verbose --gem-full --no-dep-run --add-all-core --gemfile .\Gemfile
+ocra src/main.rb src/pak_decrypt.rb src/pak_io.rb --verbose --gem-full --add-all-core --gemfile .\Gemfile
 ```
 
 ## Roadmap: 
