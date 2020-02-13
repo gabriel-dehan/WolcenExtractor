@@ -86,7 +86,7 @@ class PakDecrypt
   def unpak!(pak_file)
     source = io.format_path(pak_file, posix: false, with_source: true)
     dest = io.format_path(pak_file, posix: false, with_dest: true).gsub('.pak', '.zip')
-    system('.\bin\PakDecrypt_Unpatched.exe', source, dest, out: File::NULL)
+    system('.\bin\PakDecrypt.exe', source, dest, out: File::NULL)
     dest
   end
 
