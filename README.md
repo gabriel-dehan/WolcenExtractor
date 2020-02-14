@@ -101,7 +101,7 @@ Example:
 wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked" --only "umbra.pak"
 ```
 
-Will only extract the file with the exact name "umbra.pak" 
+The `--only "umbra.pak"` will only extract the file with the exact name "umbra.pak" 
 
 #### Only patching PakDecrypt.exe with the latest Wolcen RSA key
 
