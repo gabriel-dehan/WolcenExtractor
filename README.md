@@ -8,6 +8,7 @@
   + [Basic usage](#basic-usage)
   + [Advanced usage](#advanced-usage)
     - [Extracting only certain pak files](#extracting-only-certain-pak-files)
+    - [Extracting only ONE very specific pak file](#extracting-only-one-very-specific-pak-file)
     - [Only patching PakDecrypt.exe with the latest Wolcen RSA key](#only-patching-pakdecryptexe-with-the-latest-wolcen-rsa-key)
     - [Only decrypt CryXML](#only-decrypt-cryxml)
 * [Troubleshooting](#troubleshooting)
@@ -90,6 +91,17 @@ wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\co
 ```
 The use of the flag `--only "lib,umbra"` will make the program only extract `.pak` files that have the words `lib` or `umbra` in their name. 
 You can search for anything for the pattern as long as the values are comma separated and the pattern is case insensitive. If you only have one pattern to match you can of course write `--only "umbra"` to match only files with `umbra` in their name.
+
+#### Extracting only ONE very specific pak file
+
+Same as above, you can use the `--only` option :) 
+
+Example: 
+```
+wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen" --dest "C:\Users\princ\Documents\WolcenUnpacked" --only "umbra.pak"
+```
+
+Will only extract the file with the exact name "umbra.pak" 
 
 #### Only patching PakDecrypt.exe with the latest Wolcen RSA key
 
