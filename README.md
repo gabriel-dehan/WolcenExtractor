@@ -41,7 +41,8 @@ Beware as you DON'T WANT the 64bit version, you must install the 32bit (x86) fil
 
 ## Installation
 
-[Download the latest Release](https://github.com/gabriel-dehan/WolcenExtractor/releases) and extract it in it's own directory, wherever you want.
+[Go to the latest Release](https://github.com/gabriel-dehan/WolcenExtractor/releases), download **WolcenExtractor.zip
+** and extract it in it's own directory, wherever you want.
 
 ## Usage
 
