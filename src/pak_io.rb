@@ -17,11 +17,15 @@ class PakIO
 
   def find_files(extension, dest: false)
     Dir.glob("#{dest ? posix_dest : posix_source}/**/*.#{extension}").select do |path|
-      if patterns.empty? || dest
-        true
+      if path.split("/")[-2] == "localization"
+        path.split("/").last.match /english_xml/
       else
-        file_name = path.split("/").last
-        patterns.any? { |pattern| pattern.match(file_name) }
+        if patterns.empty? || dest
+          true
+        else
+          file_name = path.split("/").last
+          patterns.any? { |pattern| pattern.match(file_name) }
+        end
       end
     end
   end
@@ -57,5 +61,10 @@ class PakIO
       end
     end
     puts " Destination folder created."
+  end
+
+  def clean_up!
+    # Remove all empty directories after unpacking
+    Dir.glob(File.join(posix_dest, '**/*')).select { |d| File.directory? d }.reverse_each { |d| Dir.rmdir(d) if (Dir.entries(d) - %w[ . .. ]).empty? }
   end
 end

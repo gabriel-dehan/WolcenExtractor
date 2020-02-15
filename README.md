@@ -128,7 +128,6 @@ To do this you can just go to `/bin` folder and use `RuneForge2.exe <sourcexml>`
 - The **program is slow to start** (10-15 seconds) and that's "normal". I am by no mean a software developer and my main language is Ruby which is not meant for software development or the release of executables. This means that before my code can load, it needs to load Ruby before executing my code which is  the reason for the slow start.
 - Be careful not to leave any trailing backslash to your `--source` or `--destination`: `wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen\"` will cause an error whereas `wolcen_extractor.exe extract --source "C:\Program Files (x86)\Steam\steamapps\common\Wolcen"` will work.
 - When using **Windows Powershell** you need to add a `.\` before the name of the program. This means that instead of `wolcen_extractor.exe ...` you need to write `.\wolcen_extractor.exe`. 
-- If you are using the `--only` option, the destination folder might contain **empty folders**. That's because the source folder hierarchy is recreated before pattern matching occurs. This is not really a bug but I haven't had time to fix that.
 
 /!\ DDS converting is buggy at the moment so I have deactivated it until I find a better way of handling it /!\
 - Sometimes, the execution hangs during a DDS conversion phase, in this case, just hitting enter usually solves the issue.

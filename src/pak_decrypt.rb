@@ -81,6 +81,9 @@ class PakDecrypt
       # end
       # puts " +-> DDS Converted."
     end
+
+    puts "\n Cleaning up..."
+    io.clean_up!
   end
 
   def unpak!(pak_file)
